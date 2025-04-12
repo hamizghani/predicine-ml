@@ -1,0 +1,5 @@
+pandas
+numpy
+fastapi[standard]
+xgboost
+scikit-learn

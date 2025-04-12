@@ -3,6 +3,7 @@ import xgboost as xgb
 import math
 from sklearn.preprocessing import LabelEncoder
 import joblib
+from datetime import datetime, timedelta
 
 users = pd.read_csv("users.csv")
 medicine = pd.read_csv("medicine.csv")
@@ -229,7 +230,7 @@ def process_data(input_json, final_df):
 def get_predictions(stok, hasil_prediksi):
 
     # Hitung hari hingga stok habis
-    days_until_stockout = stok / hasil_prediksi
+    days_until_stockout = float(stok / hasil_prediksi)
 
     # Tanggal hari ini
     today = datetime.now().date()
@@ -284,17 +285,17 @@ def calculate_recom(recom_list, stok):
     return stock_requirements
 
 ## CONTOH FLOW
-generated_data = generate_features(users, medicine, medicinedisease, disease, transaction_history)
-train_and_save_model(generated_data)
+# generated_data = generate_features(users, medicine, medicinedisease, disease, transaction_history)
+# train_and_save_model(generated_data)
 
-input_json = {
-    "userId": 1,
-    "medicineId": 3,
-    "price_per_unit": 6070,
-    "date": "2025-04-11",
-    "region": "Jawa"
-}
+# input_json = {
+#     "userId": 1,
+#     "medicineId": 3,
+#     "price_per_unit": 6070,
+#     "date": "2025-04-11",
+#     "region": "Jawa"
+# }
 
-processed_data = process_data(input_json, generated_data)
-predictions = predict_from_model(processed_data)
-get_predictions(200, predictions[0])
+# processed_data = process_data(input_json, generated_data)
+# predictions = predict_from_model(processed_data)
+# get_predictions(200, predictions[0])
